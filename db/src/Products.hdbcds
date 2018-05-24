@@ -1,0 +1,11 @@
+namespace mta01.db;
+
+context Products {
+
+    /*@@layout{"layoutInfo":{"x":86,"y":60.5}}*/
+    entity Products {
+        key productID   : String(10);
+            description : String(30);
+            price       : Double;
+    };
+};

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="mta01.db::CustomerDetails" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="HOURLY" enforceSqlExecution="false">
+<descriptions defaultDescription="CustomerDetails"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="mta01.db::Customer.Customer">
+    <resourceUri>mta01.db::Customer.Customer</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="mta01.db::Customer.Customer">
+  <attributes>
+    <attribute id="custNum" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="custNum"/>
+      <keyMapping columnObjectName="Customer.Customer" columnName="custNum"/>
+    </attribute>
+    <attribute id="custName" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="custName"/>
+      <keyMapping columnObjectName="Customer.Customer" columnName="custName"/>
+    </attribute>
+    <attribute id="country" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="country"/>
+      <keyMapping columnObjectName="Customer.Customer" columnName="country"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

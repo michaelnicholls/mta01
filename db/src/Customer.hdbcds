@@ -1,0 +1,11 @@
+namespace mta01.db;
+
+context Customer {
+	entity Customer {
+        key custNum: Integer;
+        custName: String(40);
+        country: String(20);
+        
+     };        
+
+};

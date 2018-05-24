@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="mta01.db::SalesSummary" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" cacheInvalidationPeriod="HOURLY" enforceSqlExecution="false" outputViewType="Aggregation">
+<descriptions defaultDescription="SalesSummary"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="mta01.db::Sales.SalesOrderItems">
+    <resourceUri>mta01.db::Sales.SalesOrderItems</resourceUri>
+  </DataSource>
+  <DataSource id="mta01.db::Sales.SalesOrders">
+    <resourceUri>mta01.db::Sales.SalesOrders</resourceUri>
+  </DataSource>
+  <DataSource id="mta01.db::ProductDetails">
+    <resourceUri>mta01.db::ProductDetails</resourceUri>
+  </DataSource>
+  <DataSource id="mta01.db::UserDetails">
+    <resourceUri>mta01.db::UserDetails</resourceUri>
+  </DataSource>
+  <DataSource id="mta01.db::CustomerDetails">
+    <resourceUri>mta01.db::CustomerDetails</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="OrderNum">
+        <descriptions defaultDescription="OrderNum"/>
+      </viewAttribute>
+      <viewAttribute id="lineNum" aggregationType="sum">
+        <descriptions defaultDescription="lineNum"/>
+      </viewAttribute>
+      <viewAttribute id="productID">
+        <descriptions defaultDescription="productID"/>
+      </viewAttribute>
+      <viewAttribute id="qty" aggregationType="sum">
+        <descriptions defaultDescription="qty"/>
+      </viewAttribute>
+      <viewAttribute id="SalesPerson" aggregationType="sum">
+        <descriptions defaultDescription="SalesPerson"/>
+      </viewAttribute>
+    
+      <viewAttribute id="custNum" aggregationType="sum">
+        <descriptions defaultDescription="custNum"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="mta01.db::Sales.SalesOrderItems">
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrderNum" source="OrderNum"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="lineNum" source="lineNum"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="productID" source="productID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="qty" source="qty"/>
+    </input>
+    <input node="mta01.db::Sales.SalesOrders">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesPerson" source="SalesPerson"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="custNum" source="custNum"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrderNum" source="OrderNum"/>
+    </input>
+    <joinAttribute name="OrderNum"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="OrderNum">
+        <descriptions defaultDescription="OrderNum"/>
+      </viewAttribute>
+      <viewAttribute id="lineNum" aggregationType="sum">
+        <descriptions defaultDescription="lineNum"/>
+      </viewAttribute>
+      <viewAttribute id="productID">
+        <descriptions defaultDescription="productID"/>
+      </viewAttribute>
+      <viewAttribute id="qty" aggregationType="sum">
+        <descriptions defaultDescription="qty"/>
+      </viewAttribute>
+      <viewAttribute id="SalesPerson" aggregationType="sum">
+        <descriptions defaultDescription="SalesPerson"/>
+      </viewAttribute>
+      <viewAttribute id="description">
+        <descriptions defaultDescription="description"/>
+      </viewAttribute>
+      <viewAttribute id="price">
+        <descriptions defaultDescription="price"/>
+      </viewAttribute>
+    
+      <viewAttribute id="custNum" aggregationType="sum">
+        <descriptions defaultDescription="custNum"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrderNum" source="OrderNum"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="lineNum" source="lineNum"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="productID" source="productID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="qty" source="qty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesPerson" source="SalesPerson"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="custNum" source="custNum"/>
+    </input>
+    <input node="mta01.db::ProductDetails">
+      <mapping xsi:type="Calculation:AttributeMapping" target="description" source="description"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="price" source="price"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="productID" source="productID"/>
+    </input>
+    <joinAttribute name="productID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="OrderNum">
+        <descriptions defaultDescription="OrderNum"/>
+      </viewAttribute>
+      <viewAttribute id="lineNum" aggregationType="sum">
+        <descriptions defaultDescription="lineNum"/>
+      </viewAttribute>
+      <viewAttribute id="productID">
+        <descriptions defaultDescription="productID"/>
+      </viewAttribute>
+      <viewAttribute id="qty" aggregationType="sum">
+        <descriptions defaultDescription="qty"/>
+      </viewAttribute>
+      <viewAttribute id="SalesPerson" aggregationType="sum">
+        <descriptions defaultDescription="SalesPerson"/>
+      </viewAttribute>
+      <viewAttribute id="description">
+        <descriptions defaultDescription="description"/>
+      </viewAttribute>
+      <viewAttribute id="price" aggregationType="sum">
+        <descriptions defaultDescription="price"/>
+      </viewAttribute>
+    
+      <viewAttribute id="FirstName">
+        <descriptions defaultDescription="FirstName"/>
+      </viewAttribute>
+      <viewAttribute id="LastName">
+        <descriptions defaultDescription="LastName"/>
+      </viewAttribute>
+      <viewAttribute id="Email">
+        <descriptions defaultDescription="Email"/>
+      </viewAttribute>
+    
+      <viewAttribute id="custNum" aggregationType="sum">
+        <descriptions defaultDescription="custNum"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Join_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrderNum" source="OrderNum"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="lineNum" source="lineNum"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="productID" source="productID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="qty" source="qty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesPerson" source="SalesPerson"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="description" source="description"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="price" source="price"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="custNum" source="custNum"/>
+    </input>
+    <input node="mta01.db::UserDetails">
+      <mapping xsi:type="Calculation:AttributeMapping" target="FirstName" source="FirstName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LastName" source="LastName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Email" source="Email"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesPerson" source="UserId"/>
+    </input>
+    <joinAttribute name="SalesPerson"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="OrderNum">
+        <descriptions defaultDescription="OrderNum"/>
+      </viewAttribute>
+      <viewAttribute id="lineNum" aggregationType="sum">
+        <descriptions defaultDescription="lineNum"/>
+      </viewAttribute>
+      <viewAttribute id="productID">
+        <descriptions defaultDescription="productID"/>
+      </viewAttribute>
+      <viewAttribute id="qty" aggregationType="sum">
+        <descriptions defaultDescription="qty"/>
+      </viewAttribute>
+      <viewAttribute id="SalesPerson" aggregationType="sum">
+        <descriptions defaultDescription="SalesPerson"/>
+      </viewAttribute>
+      <viewAttribute id="description">
+        <descriptions defaultDescription="description"/>
+      </viewAttribute>
+      <viewAttribute id="price" aggregationType="sum">
+        <descriptions defaultDescription="price"/>
+      </viewAttribute>
+      <viewAttribute id="FirstName">
+        <descriptions defaultDescription="FirstName"/>
+      </viewAttribute>
+      <viewAttribute id="LastName">
+        <descriptions defaultDescription="LastName"/>
+      </viewAttribute>
+      <viewAttribute id="Email">
+        <descriptions defaultDescription="Email"/>
+      </viewAttribute>
+      <viewAttribute id="custNum" aggregationType="sum">
+        <descriptions defaultDescription="custNum"/>
+      </viewAttribute>
+    
+      <viewAttribute id="custName">
+        <descriptions defaultDescription="custName"/>
+      </viewAttribute>
+      <viewAttribute id="country">
+        <descriptions defaultDescription="country"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Join_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrderNum" source="OrderNum"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="lineNum" source="lineNum"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="productID" source="productID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="qty" source="qty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesPerson" source="SalesPerson"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="description" source="description"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="price" source="price"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FirstName" source="FirstName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LastName" source="LastName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Email" source="Email"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="custNum" source="custNum"/>
+    </input>
+    <input node="mta01.db::CustomerDetails">
+      <mapping xsi:type="Calculation:AttributeMapping" target="custName" source="custName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="country" source="country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="custNum" source="custNum"/>
+    </input>
+  
+    <joinAttribute name="custNum"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_4">
+  <attributes>
+    <attribute id="OrderNum" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="OrderNum"/>
+      <keyMapping columnObjectName="Join_4" columnName="OrderNum"/>
+    </attribute>
+    <attribute id="lineNum" order="2" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="lineNum"/>
+      <keyMapping columnObjectName="Join_4" columnName="lineNum"/>
+    </attribute>
+    <attribute id="productID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="productID"/>
+      <keyMapping columnObjectName="Join_4" columnName="productID"/>
+    </attribute>
+    <attribute id="SalesPerson" order="5" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SalesPerson"/>
+      <keyMapping columnObjectName="Join_4" columnName="SalesPerson"/>
+    </attribute>
+  
+    <attribute id="description" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="description"/>
+  
+      <keyMapping columnObjectName="Join_4" columnName="description"/>
+  
+    </attribute>
+  
+    <attribute id="FirstName" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FirstName"/>
+  
+      <keyMapping columnObjectName="Join_4" columnName="FirstName"/>
+  
+    </attribute>
+    <attribute id="LastName" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LastName"/>
+      <keyMapping columnObjectName="Join_4" columnName="LastName"/>
+    </attribute>
+    <attribute id="Email" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Email"/>
+      <keyMapping columnObjectName="Join_4" columnName="Email"/>
+    </attribute>
+  
+    <attribute id="custNum" order="12" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="custNum"/>
+      <keyMapping columnObjectName="Join_4" columnName="custNum"/>
+    </attribute>
+    <attribute id="custName" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="custName"/>
+      <keyMapping columnObjectName="Join_4" columnName="custName"/>
+    </attribute>
+    <attribute id="country" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="country"/>
+      <keyMapping columnObjectName="Join_4" columnName="country"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="qty" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="qty"/>
+      <measureMapping columnObjectName="Join_4" columnName="qty"/>
+    </measure>
+    <measure id="price" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="price"/>
+      <measureMapping columnObjectName="Join_4" columnName="price"/>
+    </measure></baseMeasures>
+  <calculatedMeasures>
+    <measure id="extPrice" order="8" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="8" scale="2" expressionLanguage="SQL">
+      <formula>&quot;qty&quot;*&quot;price&quot;</formula>
+      
+      
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="69" y="105"/>
+    
+      <rectangleSize width="140"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="79" y="475"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="mta01.db::Sales.SalesOrderItems" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="mta01.db::Sales.SalesOrders" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="79" y="379"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="57" y="60"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="mta01.db::ProductDetails" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="383" y="34"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="169" y="241"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="mta01.db::UserDetails" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="169" y="193"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="Join_3" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="mta01.db::CustomerDetails" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

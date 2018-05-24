@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="mta01.db::ProductDetails" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="HOURLY" enforceSqlExecution="false">
+<descriptions defaultDescription="ProductDetails"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="mta01.db::Products.Products">
+    <resourceUri>mta01.db::Products.Products</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="mta01.db::Products.Products">
+  <attributes>
+    <attribute id="productID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="productID"/>
+      <keyMapping columnObjectName="Products.Products" columnName="productID"/>
+    </attribute>
+    <attribute id="description" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="description"/>
+      <keyMapping columnObjectName="Products.Products" columnName="description"/>
+    </attribute>
+    <attribute id="price" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="price"/>
+      <keyMapping columnObjectName="Products.Products" columnName="price"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

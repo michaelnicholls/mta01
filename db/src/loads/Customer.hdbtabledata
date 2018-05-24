@@ -1,0 +1,20 @@
+{
+    "format_version": 1,
+    "imports": [
+        {
+            "target_table": "mta01.db::Customer.Customer",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "mta01.db.loads::Customer.csv",
+                "has_header": true
+            },
+            "import_settings": {
+                "import_columns": [
+                    "custNum",
+                    "custName",
+                    "country"
+                ]
+            }
+        }
+    ]
+}

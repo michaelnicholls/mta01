@@ -1,0 +1,20 @@
+{
+    "format_version": 1,
+    "imports": [
+        {
+            "target_table": "mta01.db::Sales.SalesOrders",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "mta01.db.loads::Orders.csv",
+                "has_header": true
+            },
+            "import_settings": {
+                "import_columns": [
+                    "OrderNum",
+                    "SalesPerson",
+                    "custNum"
+                ]
+            }
+        }
+    ]
+}

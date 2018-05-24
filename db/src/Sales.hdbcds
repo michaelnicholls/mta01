@@ -1,0 +1,19 @@
+namespace mta01.db;
+
+context Sales {
+
+    /*@@layout{"layoutInfo":{"x":79,"y":63.5}}*/
+    entity SalesOrders {
+        key OrderNum    : String(10);
+            SalesPerson : Integer;
+            custNum: Integer;
+    };
+
+    /*@@layout{"layoutInfo":{"x":-282,"y":-77.5}}*/
+    entity SalesOrderItems {
+        key OrderNum : String(10);
+        key lineNum: Integer;
+            productID : String(10);
+            qty: Integer;
+    };
+};
