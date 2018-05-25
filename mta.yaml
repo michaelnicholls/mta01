@@ -16,6 +16,9 @@ modules:
           url: '${default-url}'
     requires:
       - name: hdi_db2
+
+  
+
 resources:
   - name: hdi_db2
     properties:
