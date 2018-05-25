@@ -226,7 +226,6 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="country" source="country"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="custNum" source="custNum"/>
     </input>
-  
     <joinAttribute name="custNum"/>
   </calculationView>
 </calculationViews>
@@ -255,6 +254,10 @@
       <keyMapping columnObjectName="Join_4" columnName="description"/>
   
     </attribute>
+    <attribute id="price" order="7" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="price"/>
+      <keyMapping columnObjectName="Join_4" columnName="price"/>
+    </attribute>
   
     <attribute id="FirstName" order="9" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="FirstName"/>
@@ -273,7 +276,9 @@
   
     <attribute id="custNum" order="12" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="custNum"/>
+  
       <keyMapping columnObjectName="Join_4" columnName="custNum"/>
+  
     </attribute>
     <attribute id="custName" order="13" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="custName"/>
@@ -289,16 +294,21 @@
     <measure id="qty" order="4" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="qty"/>
       <measureMapping columnObjectName="Join_4" columnName="qty"/>
-    </measure>
-    <measure id="price" order="7" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="price"/>
-      <measureMapping columnObjectName="Join_4" columnName="price"/>
     </measure></baseMeasures>
   <calculatedMeasures>
     <measure id="extPrice" order="8" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="8" scale="2" expressionLanguage="SQL">
       <formula>&quot;qty&quot;*&quot;price&quot;</formula>
       
       
+      
+      </measure>
+  
+    <measure id="numberOfOrders" order="15" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" aggregatable="true" datatype="INTEGER">
+      <descriptions defaultDescription="numberOfOrders"/>
+      <exceptionAggregation>
+        <attribute attributeName="OrderNum"/>
+      </exceptionAggregation>
+      <formula>1</formula>
       </measure>
   </calculatedMeasures>
   <restrictedMeasures/>

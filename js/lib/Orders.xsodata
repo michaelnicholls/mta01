@@ -2,6 +2,8 @@ service {
 	"mta01.db::SalesSummary" as "OrderDetails"
 	keys generate local "ID"                            
    aggregates always;      
-
+   "mta01.db::Products.Products" as "Products";
+   "mta01.db::Customer.Customer" as "Customers";
+   "mta01.db::user.User" as "Users";
 
 }
