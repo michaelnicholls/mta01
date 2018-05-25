@@ -1,0 +1,7 @@
+service {
+	"mta01.db::SalesSummary" as "OrderDetails"
+	keys generate local "ID"                            
+   aggregates always;      
+
+
+}
