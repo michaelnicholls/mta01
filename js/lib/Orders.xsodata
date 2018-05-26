@@ -1,18 +1,27 @@
 service {
 	"mta01.db::SalesSummary" as "OrderDetails"
 	keys generate local "ID"                          
-   aggregates always;      
+   aggregates always;    
+   
    "mta01.db::Products.Products" as "Products";
+     
    "mta01.db::Customer.Customer" as "Customers";
+   
    "mta01.db::user.User" as "Users";
+   
 	"mta01.db::Sales.SalesOrders" as "Orders"
 	 navigates ("OrderLineItems" as "LineItemRef") ;
-	"mta01.db::Sales.SalesOrderItems" as "LineItems";
+	 
+	"mta01.db::Sales.SalesOrderItems" as "LineItems"
+	 navigates ("ProductDetails" as "Details");
 	
 	association "OrderLineItems" 
 	with referential constraint 
 	principal "Orders"("OrderNum") multiplicity "1" 
 	dependent "LineItems"("OrderNum") multiplicity "*";
 	
-
+	association "ProductDetails" 
+	with referential constraint 
+	principal "LineItems"("productID") multiplicity "1" 
+	dependent "Products"("productID") multiplicity "*";
 }
